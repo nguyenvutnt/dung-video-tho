@@ -1,0 +1,80 @@
+[
+  {
+    "file": "/root/demo-video-tho/nguon/c01.mp4",
+    "giay": 8,
+    "rong": 1080,
+    "cao": 1920,
+    "xoay": 0,
+    "fps": 30,
+    "coTieng": true,
+    "mb": 0.2,
+    "khoThat": "1080×1920",
+    "lufs": -21.9,
+    "dinh": -17.8,
+    "choLang": [
+      [
+        3,
+        5
+      ]
+    ],
+    "doiCanh": [],
+    "luoi": "c01-khung.jpg",
+    "mocLuoi": [
+      0,
+      0.5,
+      1,
+      1.5,
+      2,
+      2.5,
+      3,
+      3.5,
+      4,
+      4.5,
+      5,
+      5.5,
+      6,
+      6.5,
+      7,
+      7.5
+    ]
+  },
+  {
+    "file": "/root/demo-video-tho/nguon/c02.mp4",
+    "giay": 8,
+    "rong": 1080,
+    "cao": 1920,
+    "xoay": 0,
+    "fps": 30,
+    "coTieng": true,
+    "mb": 0.2,
+    "khoThat": "1080×1920",
+    "lufs": -21.9,
+    "dinh": -17.2,
+    "choLang": [
+      [
+        3.5,
+        5
+      ]
+    ],
+    "doiCanh": [],
+    "luoi": "c02-khung.jpg",
+    "mocLuoi": [
+      0,
+      0.5,
+      1,
+      1.5,
+      2,
+      2.5,
+      3,
+      3.5,
+      4,
+      4.5,
+      5,
+      5.5,
+      6,
+      6.5,
+      7,
+      7.5
+    ]
+  }
+]

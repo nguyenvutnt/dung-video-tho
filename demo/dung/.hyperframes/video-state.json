@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "historyId": "fc859181-49ef-47e3-8e67-302ae2776e3e",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5",
+      "content": "/root/.cache/hyperframes/history/fc859181-49ef-47e3-8e67-302ae2776e3e/blobs/1d/1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5"
+    },
+    "CLAUDE.md": {
+      "hash": "1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5",
+      "content": "/root/.cache/hyperframes/history/fc859181-49ef-47e3-8e67-302ae2776e3e/blobs/1d/1d4f0c8ca2507b94fd7c9df709fff01416adbd51a0f922b9d6ed2f40129147d5"
+    },
+    "c01.mp4": {
+      "hash": "54db78cb45684669cc8707f1dedfe5739f9a189f9d826280454026f474c745c7",
+      "content": "/root/.cache/hyperframes/history/fc859181-49ef-47e3-8e67-302ae2776e3e/blobs/54/54db78cb45684669cc8707f1dedfe5739f9a189f9d826280454026f474c745c7"
+    },
+    "c02.mp4": {
+      "hash": "dbdc44067ca9202f6f6a6553930b4e54b0ebc603ce2f403c3b8874659704e413",
+      "content": "/root/.cache/hyperframes/history/fc859181-49ef-47e3-8e67-302ae2776e3e/blobs/db/dbdc44067ca9202f6f6a6553930b4e54b0ebc603ce2f403c3b8874659704e413"
+    },
+    "hyperframes.json": {
+      "hash": "53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50",
+      "content": "/root/.cache/hyperframes/history/fc859181-49ef-47e3-8e67-302ae2776e3e/blobs/53/53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
+    },
+    "index.html": {
+      "hash": "28c910b8b3492770584677a423616d79ee7304660d49e0a41592c2ad0df98416",
+      "content": "/root/.cache/hyperframes/history/fc859181-49ef-47e3-8e67-302ae2776e3e/blobs/28/28c910b8b3492770584677a423616d79ee7304660d49e0a41592c2ad0df98416"
+    },
+    "meta.json": {
+      "hash": "23d86e76dbd4478c9f83112dbea2d0d9b3aa4b0e8027dcaf66433dcb2f58e468",
+      "content": "/root/.cache/hyperframes/history/fc859181-49ef-47e3-8e67-302ae2776e3e/blobs/23/23d86e76dbd4478c9f83112dbea2d0d9b3aa4b0e8027dcaf66433dcb2f58e468"
+    },
+    "nhac.mp3": {
+      "hash": "3b0d3a351fc874f8c2a8fdc75b40e3f9493ebbbf94bb0bfd291657bafb7e8234",
+      "content": "/root/.cache/hyperframes/history/fc859181-49ef-47e3-8e67-302ae2776e3e/blobs/3b/3b0d3a351fc874f8c2a8fdc75b40e3f9493ebbbf94bb0bfd291657bafb7e8234"
+    },
+    "package.json": {
+      "hash": "03e4e3e01b35217a1835e22c34206e3cdbb64ce9d85ec406a474513c85655213",
+      "content": "/root/.cache/hyperframes/history/fc859181-49ef-47e3-8e67-302ae2776e3e/blobs/03/03e4e3e01b35217a1835e22c34206e3cdbb64ce9d85ec406a474513c85655213"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": {
+      "revision": null,
+      "id": "dce86045-9aaa-415b-800c-ebb3f74dcb98"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "id": "dce86045-9aaa-415b-800c-ebb3f74dcb98",
+        "scope": "project",
+        "report": "/root/demo-video-tho/dung/.hyperframes/artifacts/checks/dce86045-9aaa-415b-800c-ebb3f74dcb98.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1792724119033,
+        "contentHash": "bf568184de7f15362d24eff9edc48d3f7dc486c3ec2cdfc0b065c7672394ba24",
+        "revision": null,
+        "inputFingerprint": "074021cccebd1516b3601ab3e9f65fb1038321e34b3c32922304ec8892972c6a",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "e3da9d19-e8e4-4bc4-b263-e79d66316324",
+      "completedAt": 1792724150841,
+      "output": "/root/demo-video-tho/tho.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
+}

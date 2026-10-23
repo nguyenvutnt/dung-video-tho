@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dựng Video Thô — Demo HyperFrames & Claude AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(22, 30, 49, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.3);
+      --success: #10b981;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 20% 15%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 40%);
+    }
+    header {
+      padding: 48px 24px 24px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #60a5fa;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #ffffff 30%, #93c5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 17px;
+      max-width: 640px;
+      margin: 0 auto 28px;
+    }
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: #2563eb;
+      color: #fff;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 420px) 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .demo-grid { grid-template-columns: 1fr; }
+    }
+
+    .video-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-meta {
+      width: 100%;
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .meta-item {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .meta-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; }
+    .meta-value { font-size: 13px; font-weight: 600; color: #fff; font-family: 'JetBrains Mono', monospace; }
+
+    .details-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    .details-card h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .step-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(59, 130, 246, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      color: #60a5fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .step-content h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .step-content p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .code-box {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #93c5fd;
+      margin-top: 6px;
+      overflow-x: auto;
+    }
+
+    .gallery-section {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 48px;
+    }
+    .gallery-section h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #000;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.02);
+    }
+    .gallery-item p {
+      padding: 8px 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      background: rgba(0,0,0,0.6);
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--text-muted);
+      font-size: 14px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="badge">
+      <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#10b981;"></span>
+      HyperFrames 0.8.168 · Claude AI Skill
+    </div>
+    <h1>Dựng Video Thô → Video Có Gu</h1>
+    <p class="subtitle">Quy trình tự động hóa: Biến clip quay điện thoại thành video chuẩn TikTok / Shorts 9:16 có hook 2 giây đầu, zoom nhấn, mờ chồng và chuẩn hóa âm thanh -14 LUFS.</p>
+    <div class="actions">
+      <a href="https://github.com/nguyenvutnt/dung-video-tho" class="btn btn-primary">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        Mã nguồn GitHub
+      </a>
+      <a href="docs/gioi-thieu-skill.html" class="btn btn-secondary">
+        Xem tài liệu chi tiết (Interactive Doc)
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="demo-grid">
+      <!-- Cột video preview -->
+      <div class="video-card">
+        <div class="video-wrapper">
+          <video controls autoplay muted loop playsinline>
+            <source src="demo/demo-v1.mp4" type="video/mp4">
+            Trình duyệt không hỗ trợ thẻ video.
+          </video>
+        </div>
+        <div class="video-meta">
+          <div class="meta-item">
+            <div class="meta-label">Độ phân giải</div>
+            <div class="meta-value">1080 × 1920 (9:16)</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Thời lượng</div>
+            <div class="meta-value">11.1 giây · 30 FPS</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Độ to âm thanh</div>
+            <div class="meta-value">-15.3 LUFS</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Engine render</div>
+            <div class="meta-value">HyperFrames + GSAP</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cột quy trình kiểm định -->
+      <div class="details-card">
+        <h2>⚡ 5 Bước Tự Động Hóa Thực Tế</h2>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">0</div>
+            <div class="step-content">
+              <h3>Rà soát môi trường (kiem-may.mjs)</h3>
+              <p>Xác thực tự động Node.js ≥ 22, FFmpeg, FFprobe và HyperFrames CLI.</p>
+              <div class="code-box">node scripts/kiem-may.mjs</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h3>Soi nguồn & dò khoảng lặng (soi-nguon.mjs)</h3>
+              <p>Phát hiện khoảng lặng (silence detection) để cắt câu trọn vẹn, không cụt lời, xuất lưới ảnh khung hình.</p>
+              <div class="code-box">node scripts/soi-nguon.mjs nguon --out soi</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h3>Làm sạch clip thô (lam-sach.mjs)</h3>
+              <p>Lọc khử tạp âm (quạt, gió, xì nền) và tự động tăng sáng đều toàn khung hình.</p>
+              <div class="code-box">node scripts/lam-sach.mjs c01.mp4</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h3>Dựng & Render (HyperFrames CLI)</h3>
+              <p>Ghép clip bằng HTML/CSS/GSAP theo khuôn chuẩn: Hook 2s đầu, zoom nhấn, mờ chồng không chớp.</p>
+              <div class="code-box">npx hyperframes render --output tho.mp4</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h3>Chuẩn hóa âm thanh & Kiểm định (kiem-video.mjs)</h3>
+              <p>FFmpeg loudnorm -14 LUFS, dò chớp sáng và xuất lưới ảnh nghiệm thu 100% tự động.</p>
+              <div class="code-box">node scripts/kiem-video.mjs demo-v1.mp4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Khu vực ảnh kiểm định -->
+    <div class="gallery-section">
+      <h2>📸 Hình ảnh Kiểm định Chất lượng (kiem-video)</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="demo/demo-v1-kiem/luoi.jpg" alt="Lưới kiểm tra toàn bộ khung hình">
+          <p>Lưới phân tích toàn bộ khung hình (luoi.jpg)</p>
+        </div>
+        <div class="gallery-item">
+          <img src="demo/demo-v1-kiem/1-dau.jpg" alt="Khung đầu: Hook">
+          <p>Khung đầu (giây 0.0): Chữ hook rõ ràng, không đen</p>
+        </div>
+        <div class="gallery-item">
+          <img src="demo/demo-v1-kiem/2-giua.jpg" alt="Khung giữa: Chuyển cảnh">
+          <p>Khung giữa: Mờ chồng mượt mà, không chớp</p>
+        </div>
+        <div class="gallery-item">
+          <img src="demo/demo-v1-kiem/3-cuoi.jpg" alt="Khung cuối: Call to action">
+          <p>Khung cuối: Lớp phủ tối nhẹ & kêu gọi hành động</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Dự án dựng video tự động với HyperFrames & Claude AI · Được quản lý bởi @nguyenvutnt</p>
+  </footer>
+</body>
+</html>
